@@ -1,0 +1,17 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="800" y2="0" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0F172A"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+    <linearGradient id="b" x1="120" y1="120" x2="680" y2="380" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#22C55E" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#06B6D4" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="28" fill="url(#g)"/>
+  <rect x="90" y="120" width="620" height="260" rx="22" fill="url(#b)" opacity="0.25"/>
+  <rect x="120" y="150" width="560" height="200" rx="18" fill="url(#b)" opacity="0.18"/>
+  <text x="56" y="96" fill="#E5E7EB" font-size="28" font-family="ui-sans-serif, system-ui, -apple-system">Palo Portfolio</text>
+  <text x="56" y="138" fill="#A7F3D0" font-size="18" font-family="ui-sans-serif, system-ui, -apple-system">Mono System</text>
+</svg>

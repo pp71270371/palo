@@ -1,23 +1,284 @@
+---
+import Header from '../components/Header.astro';
+
+interface Props {
+	title?: string;
+	description?: string;
+}
+
+const {
+	title = 'Palo',
+	description = 'Palo website built with Astro.',
+} = Astro.props;
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="zh-CN">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<link rel="icon" href="/favicon.ico" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="description" content={description} />
+		<title>{title}</title>
+
+		<script is:inline>
+			// Theme initialization to avoid flash.
+			(() => {
+				try {
+					const stored = localStorage.getItem('theme');
+					if (stored === 'light' || stored === 'dark') {
+						document.documentElement.dataset.theme = stored;
+						return;
+					}
+					const prefersDark =
+						window.matchMedia &&
+						window.matchMedia('(prefers-color-scheme: dark)').matches;
+					document.documentElement.dataset.theme = prefersDark ? 'dark' : 'light';
+				} catch (_) {
+					// If localStorage/matchMedia is unavailable, do nothing.
+				}
+			})();
+		</script>
 	</head>
 	<body>
+		<Header brand="Palo" />
 		<slot />
 	</body>
 </html>
 
-<style>
+<style is:global>
+	/* -------------------------------------------------------------------------- */
+	/* Font Face / 字体资源                                                          */
+	/* -------------------------------------------------------------------------- */
+	@font-face {
+		font-family: 'League Spartan';
+		src: url('/fonts/League_Spartan/LeagueSpartan-VariableFont_wght.ttf')
+			format('truetype');
+		font-style: normal;
+		font-weight: 100 900;
+		font-display: swap;
+	}
+
+	:root {
+		/* ---------------------------------------------------------------------- */
+		/* Layout Tokens / 布局变量                                                */
+		/* Edit these values to control page width and horizontal spacing.         */
+		/* 修改这里可以统一控制页面最大宽度和左右留白。                               */
+		/* ---------------------------------------------------------------------- */
+		--page-max-width: 1440px;
+		--page-gutter: clamp(1.25rem, 3.5vw, 2.5rem);
+		--header-height: 5.5rem;
+
+		/* ---------------------------------------------------------------------- */
+		/* Typography Tokens / 排版变量                                            */
+		/* `--font-size-base` is the master size for body text.                    */
+		/* `--font-size-base` 是正文基础字号，其他层级围绕它进行缩放。                 */
+		/* Heading sizes use responsive clamp() so they scale smoothly             */
+		/* from mobile to desktop without becoming too small or too huge.          */
+		/* 标题字号使用响应式 clamp()，在手机到桌面之间平滑变化。                     */
+		/* `--font-weight-base` is the default text weight for regular content.    */
+		/* `--font-weight-base` 是全站常规文字的默认字重。                           */
+		/* `--font-weight-bold` is the shared bold weight used across the site.    */
+		/* `--font-weight-bold` 是全站统一的粗体权重。                               */
+		/* ---------------------------------------------------------------------- */
+		--font-size-base: 1rem;
+		--line-height-base: 1.5;
+		--font-weight-base: 300;
+		--font-weight-bold: 500;
+		--font-size-h1: clamp(
+			calc(var(--font-size-base) * 3.5),
+			10vw,
+			calc(var(--font-size-base) * 11)
+		);
+		--font-size-h2: clamp(
+			calc(var(--font-size-base) * 2.5),
+			7vw,
+			calc(var(--font-size-base) * 7)
+		);
+		--font-size-h3: clamp(
+			calc(var(--font-size-base) * 2),
+			5vw,
+			calc(var(--font-size-base) * 5)
+		);
+		--font-size-h4: clamp(
+			calc(var(--font-size-base) * 1.75),
+			3.5vw,
+			calc(var(--font-size-base) * 3)
+		);
+		--font-size-h5: clamp(
+			calc(var(--font-size-base) * 1.5),
+			2.5vw,
+			calc(var(--font-size-base) * 2)
+		);
+		--font-size-h6: var(--font-size-base);
+		--line-height-heading: 1.1;
+
+		/* ---------------------------------------------------------------------- */
+		/* Color Tokens: Light Theme / 浅色主题颜色变量                              */
+		/* These are the default colors used when no dark theme is active.         */
+		/* 这里定义默认的浅色主题颜色。                                              */
+		/* ---------------------------------------------------------------------- */
+		--bg: #f6f8fb;
+		--text: #1f2937;
+		--text-strong: #111827;
+		--text-muted: #4b5563;
+		--muted: #6b7280;
+		--border: #e5e7eb;
+		--card-bg: #ffffff;
+		--header-bg: rgba(246, 248, 251, 0.8);
+
+		--link: #111827;
+
+		/* ---------------------------------------------------------------------- */
+		/* Component Tokens / 组件变量                                              */
+		/* Small reusable UI tokens for badges, buttons, and highlighted marks.   */
+		/* 这些变量用于徽章、按钮、高亮文本等可复用组件。                             */
+		/* ---------------------------------------------------------------------- */
+		--badge-bg: #e8eeff;
+		--badge-text: #3046c9;
+
+		--btn-bg: #111827;
+		--btn-text: #ffffff;
+		--btn-secondary-bg: #e5e7eb;
+		--btn-secondary-text: #111827;
+
+		--mark-bg: #111827;
+		--mark-text: #ffffff;
+	}
+
+	html[data-theme='dark'] {
+		/* ---------------------------------------------------------------------- */
+		/* Color Tokens: Dark Theme / 深色主题颜色覆盖                              */
+		/* Only override values that need a dark-mode counterpart.                */
+		/* 这里只覆盖需要深色模式版本的变量。                                        */
+		/* ---------------------------------------------------------------------- */
+		--bg: #0b1020;
+		--text: #e5e7eb;
+		--text-strong: #ffffff;
+		--text-muted: #cbd5e1;
+		--muted: #9ca3af;
+		--border: #233047;
+		--card-bg: #0f172a;
+		--header-bg: rgba(11, 16, 32, 0.7);
+
+		--link: #e5e7eb;
+
+		--badge-bg: rgba(99, 102, 241, 0.25);
+		--badge-text: #c7d2fe;
+
+		--btn-bg: #e5e7eb;
+		--btn-text: #0b1020;
+		--btn-secondary-bg: rgba(229, 231, 235, 0.12);
+		--btn-secondary-text: #e5e7eb;
+
+		--mark-bg: #e5e7eb;
+		--mark-text: #0b1020;
+	}
+
+	/* -------------------------------------------------------------------------- */
+	/* Global Reset / 全局基础重置                                                  */
+	/* -------------------------------------------------------------------------- */
 	html,
 	body {
 		margin: 0;
 		width: 100%;
 		height: 100%;
+		font-size: var(--font-size-base);
+		font-family:
+			'League Spartan',
+			'Inter',
+			'PingFang SC',
+			'Hiragino Sans GB',
+			'Microsoft YaHei',
+			sans-serif;
+		background: var(--bg);
+		color: var(--text);
+		font-weight: var(--font-weight-base);
+	}
+
+	* {
+		box-sizing: border-box;
+	}
+
+	/* -------------------------------------------------------------------------- */
+	/* Global Typography / 全局排版规则                                              */
+	/* These rules affect content rendered inside <slot />, so the style block     */
+	/* must stay global.                                                           */
+	/* 这些规则会作用到 <slot /> 中的页面内容，因此这里必须保持为全局样式。           */
+	/* -------------------------------------------------------------------------- */
+	body {
+		line-height: var(--line-height-base);
+		padding-top: var(--header-height);
+	}
+
+	h1,
+	h2,
+	h3,
+	h4,
+	h5,
+	h6 {
+		margin: 0 0 0.75em;
+		color: var(--text-strong);
+		font-weight: var(--font-weight-bold);
+		text-wrap: balance;
+	}
+
+	h1 {
+		font-size: var(--font-size-h1);
+		line-height: var(--line-height-heading);
+	}
+
+	h2 {
+		font-size: var(--font-size-h2);
+		line-height: var(--line-height-heading);
+	}
+
+	h3 {
+		font-size: var(--font-size-h3);
+		line-height: var(--line-height-heading);
+	}
+
+	h4 {
+		font-size: var(--font-size-h4);
+		line-height: var(--line-height-heading);
+	}
+
+	h5 {
+		font-size: var(--font-size-h5);
+		line-height: var(--line-height-heading);
+	}
+
+	h6 {
+		font-size: var(--font-size-h6);
+		line-height: var(--line-height-base);
+	}
+
+	/* -------------------------------------------------------------------------- */
+	/* Body Text / 正文文本                                                          */
+	/* Keep body-sized elements tied to the same base font size for consistency.  */
+	/* 让正文类元素共享同一基础字号，方便统一调整。                                  */
+	/* -------------------------------------------------------------------------- */
+	p,
+	li,
+	td,
+	th,
+	label,
+	input,
+	textarea,
+	button {
+		font-size: var(--font-size-base);
+	}
+
+	p {
+		line-height: var(--line-height-base);
+	}
+
+	/* -------------------------------------------------------------------------- */
+	/* Inline Elements / 行内元素                                                   */
+	/* -------------------------------------------------------------------------- */
+	a {
+		color: inherit;
 	}
 </style>

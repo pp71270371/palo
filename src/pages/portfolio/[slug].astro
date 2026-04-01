@@ -1,0 +1,128 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+export const PORTFOLIO_ITEMS = [
+	{
+		slug: 'aurora-landing',
+		title: 'Aurora Landing',
+		description: '渐变与排版为主的产品落地页示例。',
+		cover: '/covers/portfolio-aurora.svg',
+		content:
+			'这里是作品详情页（示例）。你可以在这里介绍项目背景、目标、过程与成果。',
+	},
+	{
+		slug: 'mono-system',
+		title: 'Mono System',
+		description: '极简 UI 组件与页面结构示例。',
+		cover: '/covers/portfolio-mono.svg',
+		content:
+			'这里是作品详情页（示例）。可补充设计系统的规范、组件列表与使用方式。',
+	},
+	{
+		slug: 'zen-studio',
+		title: 'Zen Studio',
+		description: '适合工作室/个人品牌的展示页示例。',
+		cover: '/covers/portfolio-zen.svg',
+		content:
+			'这里是作品详情页（示例）。可展示服务内容、案例、客户评价与联系入口。',
+	},
+];
+
+export function getStaticPaths() {
+	return PORTFOLIO_ITEMS.map((item) => ({
+		params: { slug: item.slug },
+	}));
+}
+
+const { slug } = Astro.params;
+const item = PORTFOLIO_ITEMS.find((x) => x.slug === slug);
+
+if (!item) {
+	return Astro.redirect('/portfolio');
+}
+---
+
+<Layout title={`${item.title} | Palo Portfolio`} description={item.description}>
+	<main class="page">
+		<nav class="crumbs" aria-label="面包屑">
+			<a href="/portfolio">← Back to Portfolio</a>
+		</nav>
+
+		<header class="header">
+			<h1>{item.title}</h1>
+			<p class="lead">{item.description}</p>
+		</header>
+
+		<div class="cover">
+			<img src={item.cover} alt={`${item.title} cover`} />
+		</div>
+
+		<section class="card">
+			<h2>Overview</h2>
+			<p>{item.content}</p>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.page {
+		max-width: var(--page-max-width);
+		margin: 0 auto;
+		padding: 2.25rem var(--page-gutter) 5rem;
+	}
+
+	.crumbs a {
+		display: inline-block;
+		text-decoration: none;
+		color: var(--text-strong);
+		font-weight: var(--font-weight-bold);
+		padding: 0.35rem 0.55rem;
+		border-radius: 0.55rem;
+	}
+	.crumbs a:hover {
+		background: rgba(17, 24, 39, 0.06);
+		color: var(--link);
+	}
+
+	.header h1 {
+		margin: 1rem 0 0.5rem;
+		letter-spacing: -0.03em;
+	}
+
+	.lead {
+		margin: 0 0 1.25rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+		max-width: 70ch;
+	}
+
+	.cover {
+		aspect-ratio: 8 / 5;
+		overflow: hidden;
+		border-radius: 0.95rem;
+		border: 1px solid var(--border);
+		background: var(--card-bg);
+	}
+	.cover img {
+		width: 100%;
+		height: 100%;
+		display: block;
+		object-fit: cover;
+	}
+
+	.card {
+		margin-top: 1rem;
+		background: var(--card-bg);
+		border: 1px solid var(--border);
+		border-radius: 0.95rem;
+		padding: 1.25rem;
+	}
+	.card h2 {
+		margin: 0 0 0.5rem;
+	}
+	.card p {
+		margin: 0;
+		color: var(--text-muted);
+		line-height: 1.7;
+	}
+</style>

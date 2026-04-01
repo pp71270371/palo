@@ -1,0 +1,17 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#111827"/>
+      <stop offset="1" stop-color="#3046C9"/>
+    </linearGradient>
+    <radialGradient id="r" cx="0" cy="0" r="1" gradientUnits="userSpaceOnUse" gradientTransform="translate(540 160) rotate(135) scale(360 260)">
+      <stop stop-color="#8B5CF6" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#8B5CF6" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+  <rect width="800" height="500" rx="28" fill="url(#g)"/>
+  <path d="M0 360C120 290 210 420 340 355C470 290 560 160 800 240V500H0V360Z" fill="#0B1020" opacity="0.9"/>
+  <rect x="0" y="0" width="800" height="500" fill="url(#r)"/>
+  <text x="56" y="96" fill="#E5E7EB" font-size="28" font-family="ui-sans-serif, system-ui, -apple-system">Palo Portfolio</text>
+  <text x="56" y="138" fill="#C7D2FE" font-size="18" font-family="ui-sans-serif, system-ui, -apple-system">Aurora Landing</text>
+</svg>

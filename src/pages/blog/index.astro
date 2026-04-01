@@ -1,0 +1,146 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const posts = [
+	{
+		slug: 'astro-routing-notes',
+		title: 'Astro 路由与页面组织',
+		description: '用最少心智成本组织 pages、动态路由与导航。',
+		cover: '/covers/blog-astro-routing.svg',
+		date: '2026-03-31',
+	},
+	{
+		slug: 'design-system-basics',
+		title: '小型站点的 Design System',
+		description: '从字体、间距、卡片到按钮：如何保持一致性。',
+		cover: '/covers/blog-design-system.svg',
+		date: '2026-03-31',
+	},
+	{
+		slug: 'performance-checklist',
+		title: '性能检查清单（静态站）',
+		description: '图片、字体、CSS 与路由：几个最常见的加速点。',
+		cover: '/covers/blog-performance.svg',
+		date: '2026-03-31',
+	},
+];
+---
+
+<Layout title="Blog | Palo" description="Palo 博客。">
+	<main class="page">
+		<header class="top">
+			<h1>Blog</h1>
+			<p class="lead">
+				博客列表一行一个：左边 8:5 封面图，右边上标题下描述，文字对齐。
+			</p>
+		</header>
+
+		<section class="list" aria-label="文章列表">
+			{posts.map((post) => (
+				<a class="row" href={`/blog/${post.slug}`}>
+					<div class="media">
+						<img src={post.cover} alt={`${post.title} cover`} loading="lazy" />
+					</div>
+					<div class="meta">
+						<p class="date">{post.date}</p>
+						<h2>{post.title}</h2>
+						<p class="desc">{post.description}</p>
+					</div>
+				</a>
+			))}
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.page {
+		max-width: var(--page-max-width);
+		margin: 0 auto;
+		padding: 3rem var(--page-gutter) 5rem;
+	}
+
+	.top h1 {
+		margin: 0 0 0.5rem;
+		letter-spacing: -0.03em;
+	}
+
+	.lead {
+		margin: 0 0 1.5rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+		max-width: 75ch;
+	}
+
+	.list {
+		display: grid;
+		gap: 1rem;
+	}
+
+	.row {
+		display: grid;
+		grid-template-columns: 240px 1fr;
+		gap: 1rem;
+		align-items: center;
+		padding: 0.9rem;
+		background: var(--card-bg);
+		border: 1px solid var(--border);
+		border-radius: 0.95rem;
+		text-decoration: none;
+		color: inherit;
+	}
+
+	@media (max-width: 720px) {
+		.row {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.media {
+		aspect-ratio: 8 / 5;
+		overflow: hidden;
+		border-radius: 0.75rem;
+		border: 1px solid var(--border);
+		background: var(--bg);
+	}
+
+	.media img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transform: scale(1.02);
+		transition: transform 180ms ease;
+	}
+
+	.meta {
+		display: grid;
+		gap: 0.35rem;
+		align-content: center;
+	}
+
+	.date {
+		margin: 0;
+		color: var(--muted);
+		font-size: 0.9rem;
+	}
+
+	.meta h2 {
+		margin: 0;
+		letter-spacing: -0.02em;
+	}
+
+	.desc {
+		margin: 0;
+		color: var(--text-muted);
+		line-height: 1.7;
+		max-width: 80ch;
+	}
+
+	.row:hover .media img {
+		transform: scale(1.06);
+	}
+
+	.row:hover h2 {
+		text-decoration: underline;
+	}
+</style>

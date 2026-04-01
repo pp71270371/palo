@@ -1,0 +1,70 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Contact | Palo" description="联系 Palo。">
+	<main class="page">
+		<h1>Contact</h1>
+		<p class="lead">你可以通过以下方式联系我（示例内容，可替换为真实信息）。</p>
+
+		<div class="grid">
+			<section class="card">
+				<h2>Email</h2>
+				<p><a href="mailto:hello@palo.site">hello@palo.site</a></p>
+			</section>
+			<section class="card">
+				<h2>Social</h2>
+				<p><a href="#" rel="noreferrer">X / Twitter</a></p>
+			</section>
+			<section class="card">
+				<h2>Location</h2>
+				<p>Remote</p>
+			</section>
+		</div>
+	</main>
+</Layout>
+
+<style>
+	.page {
+		max-width: var(--page-max-width);
+		margin: 0 auto;
+		padding: 3rem var(--page-gutter) 5rem;
+	}
+	h1 {
+		margin: 0 0 0.75rem;
+		letter-spacing: -0.03em;
+	}
+	.lead {
+		margin: 0 0 1.5rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+		max-width: 65ch;
+	}
+	.grid {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	}
+	.card {
+		background: var(--card-bg);
+		border: 1px solid var(--border);
+		border-radius: 0.9rem;
+		padding: 1.25rem;
+	}
+	.card h2 {
+		margin: 0 0 0.5rem;
+	}
+	.card p {
+		margin: 0;
+		color: var(--text-muted);
+		line-height: 1.7;
+	}
+	.card a {
+		color: var(--link);
+		font-weight: var(--font-weight-bold);
+		text-decoration: none;
+	}
+	.card a:hover {
+		text-decoration: underline;
+	}
+</style>

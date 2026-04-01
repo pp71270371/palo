@@ -1,11 +1,114 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout>
-	<Welcome />
+<Layout title="Palo | 轻盈的网站体验" description="Palo 是一个基于 Astro 创建的现代化网站。">
+	<main class="hero">
+		<p class="badge">Astro Site</p>
+		<h1>Palo</h1>
+		<p class="lead">
+			一个使用 Astro 构建的快速、清爽、可扩展的网站起点。
+		</p>
+		<div class="actions">
+			<a href="https://astro.build/" target="_blank" rel="noreferrer">了解 Astro</a>
+			<a class="secondary" href="https://docs.astro.build/" target="_blank" rel="noreferrer">查看文档</a>
+		</div>
+	</main>
+
+	<section class="features">
+		<article>
+			<h2>高性能</h2>
+			<p>默认输出静态内容，首屏加载速度快。</p>
+		</article>
+		<article>
+			<h2>易扩展</h2>
+			<p>可按需集成 React、Vue、Svelte 等前端框架。</p>
+		</article>
+		<article>
+			<h2>开发友好</h2>
+			<p>目录清晰，适合作为品牌官网或产品落地页起点。</p>
+		</article>
+	</section>
 </Layout>
+
+<style>
+	.hero {
+		max-width: var(--page-max-width);
+		margin: 0 auto;
+		padding: 5.75rem var(--page-gutter) 3rem;
+		text-align: center;
+	}
+
+	.badge {
+		display: inline-block;
+		margin: 0;
+		padding: 0.35rem 0.7rem;
+		border-radius: 999px;
+		background: var(--badge-bg);
+		color: var(--badge-text);
+		font-weight: var(--font-weight-bold);
+		font-size: 0.875rem;
+	}
+
+	h1 {
+		margin: 1rem 0 0.75rem;
+		letter-spacing: -0.04em;
+	}
+
+	.lead {
+		margin: 0 auto;
+		max-width: 42ch;
+		font-size: 1.1rem;
+		line-height: 1.7;
+		color: var(--text-muted);
+	}
+
+	.actions {
+		display: flex;
+		gap: 0.85rem;
+		justify-content: center;
+		margin-top: 1.75rem;
+		flex-wrap: wrap;
+	}
+
+	.actions a {
+		text-decoration: none;
+		padding: 0.75rem 1rem;
+		border-radius: 0.7rem;
+		background: var(--btn-bg);
+		color: var(--btn-text);
+		font-weight: var(--font-weight-bold);
+	}
+
+	.actions a.secondary {
+		background: var(--btn-secondary-bg);
+		color: var(--btn-secondary-text);
+	}
+
+	.features {
+		max-width: var(--page-max-width);
+		margin: 0 auto;
+		padding: 0 var(--page-gutter) 5rem;
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+	}
+
+	.features article {
+		background: var(--card-bg);
+		padding: 1.25rem;
+		border-radius: 0.9rem;
+		border: 1px solid var(--border);
+	}
+
+	.features h2 {
+		margin-top: 0;
+		margin-bottom: 0.4rem;
+	}
+
+	.features p {
+		margin: 0;
+		color: var(--text-muted);
+		line-height: 1.6;
+	}
+</style>

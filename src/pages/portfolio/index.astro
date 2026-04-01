@@ -1,0 +1,143 @@
+---
+import Layout from '../../layouts/Layout.astro';
+
+const items = [
+	{
+		slug: 'aurora-landing',
+		title: 'Aurora Landing',
+		description: '渐变与排版为主的产品落地页示例。',
+		cover: '/covers/portfolio-aurora.svg',
+	},
+	{
+		slug: 'mono-system',
+		title: 'Mono System',
+		description: '极简 UI 组件与页面结构示例。',
+		cover: '/covers/portfolio-mono.svg',
+	},
+	{
+		slug: 'zen-studio',
+		title: 'Zen Studio',
+		description: '适合工作室/个人品牌的展示页示例。',
+		cover: '/covers/portfolio-zen.svg',
+	},
+];
+---
+
+<Layout title="Portfolio | Palo" description="Palo 作品集。">
+	<main class="page">
+		<header class="top">
+			<h1>Portfolio</h1>
+			<p class="lead">作品集一行 3 个卡片，封面 8:5，文字居中对齐。</p>
+		</header>
+
+		<section class="grid" aria-label="作品列表">
+			{items.map((item) => (
+				<a class="card" href={`/portfolio/${item.slug}`}>
+					<div class="media">
+						<img src={item.cover} alt={`${item.title} cover`} loading="lazy" />
+						<div class="overlay">
+							<h2>{item.title}</h2>
+							<p>{item.description}</p>
+						</div>
+					</div>
+				</a>
+			))}
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.page {
+		max-width: var(--page-max-width);
+		margin: 0 auto;
+		padding: 3rem var(--page-gutter) 5rem;
+	}
+
+	.top h1 {
+		margin: 0 0 0.5rem;
+		letter-spacing: -0.03em;
+	}
+
+	.lead {
+		margin: 0 0 1.5rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+		max-width: 70ch;
+	}
+
+	.grid {
+		display: grid;
+		gap: 1rem;
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	@media (max-width: 980px) {
+		.grid {
+			grid-template-columns: repeat(2, minmax(0, 1fr));
+		}
+	}
+
+	@media (max-width: 640px) {
+		.grid {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.card {
+		text-decoration: none;
+		color: inherit;
+	}
+
+	.media {
+		position: relative;
+		aspect-ratio: 8 / 5;
+		overflow: hidden;
+		border-radius: 0.95rem;
+		border: 1px solid var(--border);
+		background: var(--card-bg);
+	}
+
+	img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+		display: block;
+		transform: scale(1.02);
+		transition: transform 180ms ease, filter 180ms ease;
+		filter: saturate(1.02);
+	}
+
+	.overlay {
+		position: absolute;
+		inset: 0;
+		display: grid;
+		align-content: center;
+		justify-items: center;
+		gap: 0.35rem;
+		padding: 1.25rem;
+		text-align: center;
+		background: linear-gradient(
+			to bottom,
+			rgba(17, 24, 39, 0.15),
+			rgba(17, 24, 39, 0.62)
+		);
+		color: #fff;
+	}
+
+	.overlay h2 {
+		margin: 0;
+		letter-spacing: -0.02em;
+	}
+
+	.overlay p {
+		margin: 0;
+		color: rgba(255, 255, 255, 0.86);
+		line-height: 1.5;
+		max-width: 34ch;
+	}
+
+	.card:hover img {
+		transform: scale(1.06);
+		filter: saturate(1.08);
+	}
+</style>

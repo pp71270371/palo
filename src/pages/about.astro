@@ -1,0 +1,53 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="About | Palo" description="关于 Palo。">
+	<main class="page">
+		<h1>About</h1>
+		<p class="lead">
+			Palo 是一个使用 Astro 搭建的轻量网站模板，用于快速创建品牌官网、作品集与博客。
+		</p>
+		<section class="card">
+			<h2>原则</h2>
+			<ul>
+				<li>快速加载</li>
+				<li>清晰信息架构</li>
+				<li>易维护与可扩展</li>
+			</ul>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.page {
+		max-width: var(--page-max-width);
+		margin: 0 auto;
+		padding: 3rem var(--page-gutter) 5rem;
+	}
+	h1 {
+		margin: 0 0 0.75rem;
+		letter-spacing: -0.03em;
+	}
+	.lead {
+		margin: 0 0 1.5rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+		max-width: 65ch;
+	}
+	.card {
+		background: var(--card-bg);
+		border: 1px solid var(--border);
+		border-radius: 0.9rem;
+		padding: 1.25rem;
+	}
+	.card h2 {
+		margin: 0 0 0.5rem;
+	}
+	.card ul {
+		margin: 0;
+		padding-left: 1.1rem;
+		color: var(--text-muted);
+		line-height: 1.8;
+	}
+</style>

@@ -1,0 +1,14 @@
+<svg width="800" height="500" viewBox="0 0 800 500" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="800" y2="500" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#0B1220"/>
+      <stop offset="1" stop-color="#111827"/>
+    </linearGradient>
+  </defs>
+  <rect width="800" height="500" rx="28" fill="url(#g)"/>
+  <circle cx="560" cy="220" r="150" fill="#F59E0B" opacity="0.18"/>
+  <circle cx="560" cy="220" r="92" fill="#F59E0B" opacity="0.18"/>
+  <path d="M110 345C220 300 300 390 410 345C520 300 600 230 690 255" stroke="#93C5FD" stroke-opacity="0.55" stroke-width="10" stroke-linecap="round"/>
+  <text x="56" y="96" fill="#E5E7EB" font-size="28" font-family="ui-sans-serif, system-ui, -apple-system">Palo Portfolio</text>
+  <text x="56" y="138" fill="#FDE68A" font-size="18" font-family="ui-sans-serif, system-ui, -apple-system">Zen Studio</text>
+</svg>
