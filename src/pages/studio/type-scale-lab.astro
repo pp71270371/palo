@@ -1,0 +1,84 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+	title="Type Scale Lab | Palo"
+	description="用于测试二级菜单导航与全局字阶样式的页面。"
+>
+	<main class="page">
+		<nav class="crumbs" aria-label="面包屑">
+			<a href="/studio">← Back to Studio</a>
+		</nav>
+
+		<header class="header">
+			<p class="eyebrow">Level Two Test Page</p>
+			<h1>Type Scale Lab</h1>
+			<p class="lead">
+				这个页面故意放了更明显的标题层级，方便你在打开二级菜单时同时观察页面排版和导航层级是否互相干扰。
+			</p>
+		</header>
+
+		<section class="stack">
+			<h2>Heading Two</h2>
+			<p>正文段落会继续跟随全局基础字号变量。</p>
+			<h3>Heading Three</h3>
+			<p>你可以一边切换页面，一边观察二级菜单高亮是否稳定。</p>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.page {
+		max-width: var(--page-max-width);
+		margin: 0 auto;
+		padding: 2.5rem var(--page-gutter) 5rem;
+	}
+
+	.crumbs a {
+		display: inline-block;
+		text-decoration: none;
+		color: var(--text-strong);
+		font-weight: var(--font-weight-bold);
+		padding: 0.35rem 0.55rem;
+		border-radius: 0.55rem;
+	}
+
+	.crumbs a:hover {
+		background: rgba(17, 24, 39, 0.06);
+		color: var(--link);
+	}
+
+	.eyebrow {
+		margin: 1rem 0 0.35rem;
+		color: var(--muted);
+	}
+
+	.header h1 {
+		margin: 0 0 0.75rem;
+		letter-spacing: -0.03em;
+	}
+
+	.lead {
+		margin: 0 0 1.5rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+	}
+
+	.stack {
+		background: var(--card-bg);
+		border: 1px solid var(--border);
+		border-radius: 0.95rem;
+		padding: 1.25rem;
+	}
+
+	.stack h2,
+	.stack h3,
+	.stack p {
+		margin-top: 0;
+	}
+
+	.stack p:last-child {
+		margin-bottom: 0;
+	}
+</style>

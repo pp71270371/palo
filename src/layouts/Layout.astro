@@ -62,27 +62,34 @@ const {
 	}
 
 	:root {
-		/* ---------------------------------------------------------------------- */
-		/* Layout Tokens / 布局变量                                                */
-		/* Edit these values to control page width and horizontal spacing.         */
-		/* 修改这里可以统一控制页面最大宽度和左右留白。                               */
-		/* ---------------------------------------------------------------------- */
+		/* ====================================================================== */
+		/* Layout / 布局                                                           */
+		/* Controls the shell width, page gutter, and header spacing.             */
+		/* 控制网站外层宽度、页面留白和头部空间。                                   */
+		/* Header nav alignment presets / 头部导航对齐预设：                        */
+		/* Right / 默认靠右贴近主题按钮:                                            */
+		/*   --header-nav-margin-left: auto;                                       */
+		/*   --header-nav-margin-right: 0;                                         */
+		/* Center / 视觉居中:                                                       */
+		/*   --header-nav-margin-left: auto;                                       */
+		/*   --header-nav-margin-right: auto;                                      */
+		/* Left / 靠左贴近 Logo:                                                    */
+		/*   --header-nav-margin-left: 2rem;                                       */
+		/*   --header-nav-margin-right: auto;                                      */
+		/* ====================================================================== */
 		--page-max-width: 1440px;
 		--page-gutter: clamp(1.25rem, 3.5vw, 2.5rem);
 		--header-height: 5.5rem;
+		--header-nav-margin-left: auto;
+		--header-nav-margin-right: 2rem;
 
-		/* ---------------------------------------------------------------------- */
-		/* Typography Tokens / 排版变量                                            */
+		/* ====================================================================== */
+		/* Typography / 排版                                                       */
 		/* `--font-size-base` is the master size for body text.                    */
-		/* `--font-size-base` 是正文基础字号，其他层级围绕它进行缩放。                 */
-		/* Heading sizes use responsive clamp() so they scale smoothly             */
-		/* from mobile to desktop without becoming too small or too huge.          */
-		/* 标题字号使用响应式 clamp()，在手机到桌面之间平滑变化。                     */
-		/* `--font-weight-base` is the default text weight for regular content.    */
-		/* `--font-weight-base` 是全站常规文字的默认字重。                           */
-		/* `--font-weight-bold` is the shared bold weight used across the site.    */
-		/* `--font-weight-bold` 是全站统一的粗体权重。                               */
-		/* ---------------------------------------------------------------------- */
+		/* `--font-size-base` 是正文基础字号，其他层级围绕它缩放。                    */
+		/* Heading sizes use responsive clamp() for smooth scaling.                */
+		/* 标题字号使用响应式 clamp()，在不同屏宽下平滑变化。                        */
+		/* ====================================================================== */
 		--font-size-base: 1rem;
 		--line-height-base: 1.5;
 		--font-weight-base: 300;
@@ -115,11 +122,28 @@ const {
 		--font-size-h6: var(--font-size-base);
 		--line-height-heading: 1.1;
 
-		/* ---------------------------------------------------------------------- */
-		/* Color Tokens: Light Theme / 浅色主题颜色变量                              */
-		/* These are the default colors used when no dark theme is active.         */
-		/* 这里定义默认的浅色主题颜色。                                              */
-		/* ---------------------------------------------------------------------- */
+		/* ====================================================================== */
+		/* Top Nav Glass / 顶部导航玻璃效果                                        */
+		/* This section controls both the fixed header and the mobile menu layer.  */
+		/* 这一组变量同时控制固定 header 和移动端弹出菜单背景。                      */
+		/* Most common customizations / 最常调的两个入口：                           */
+		/* - Make the light theme header more white: increase light opacity.       */
+		/* - 让浅色模式更白：提高浅色透明度变量。                                     */
+		/* - Make the dark theme header deeper: increase dark opacity.             */
+		/* - 让深色模式更深：提高深色透明度变量。                                     */
+		/* ====================================================================== */
+		--top-nav-glass-blur: 18px;
+		--top-nav-glass-opacity-light: 0.8;
+		--top-nav-glass-opacity-dark: 0.75;
+
+		/* ====================================================================== */
+		/* Light Theme Colors / 浅色主题颜色                                        */
+		/* These values are the default palette used before dark mode overrides.   */
+		/* 这里是默认的浅色主题调色板。                                              */
+		/* ====================================================================== */
+		--surface-rgb: 246 248 251;
+		--top-nav-glass-opacity: var(--top-nav-glass-opacity-light);
+
 		--bg: #f6f8fb;
 		--text: #1f2937;
 		--text-strong: #111827;
@@ -127,15 +151,16 @@ const {
 		--muted: #6b7280;
 		--border: #e5e7eb;
 		--card-bg: #ffffff;
-		--header-bg: rgba(246, 248, 251, 0.8);
+		--header-bg: rgb(var(--surface-rgb) / var(--top-nav-glass-opacity));
+		--menu-overlay-bg: rgb(var(--surface-rgb) / var(--top-nav-glass-opacity));
 
 		--link: #111827;
 
-		/* ---------------------------------------------------------------------- */
+		/* ====================================================================== */
 		/* Component Tokens / 组件变量                                              */
-		/* Small reusable UI tokens for badges, buttons, and highlighted marks.   */
-		/* 这些变量用于徽章、按钮、高亮文本等可复用组件。                             */
-		/* ---------------------------------------------------------------------- */
+		/* Small reusable tokens for badges, buttons, and inline highlights.      */
+		/* 用于徽章、按钮和高亮文本等可复用组件。                                    */
+		/* ====================================================================== */
 		--badge-bg: #e8eeff;
 		--badge-text: #3046c9;
 
@@ -149,11 +174,14 @@ const {
 	}
 
 	html[data-theme='dark'] {
-		/* ---------------------------------------------------------------------- */
-		/* Color Tokens: Dark Theme / 深色主题颜色覆盖                              */
-		/* Only override values that need a dark-mode counterpart.                */
+		/* ====================================================================== */
+		/* Dark Theme Overrides / 深色主题覆盖                                      */
+		/* Only override values that need a dark-mode counterpart here.            */
 		/* 这里只覆盖需要深色模式版本的变量。                                        */
-		/* ---------------------------------------------------------------------- */
+		/* ====================================================================== */
+		--surface-rgb: 11 16 32;
+		--top-nav-glass-opacity: var(--top-nav-glass-opacity-dark);
+
 		--bg: #0b1020;
 		--text: #e5e7eb;
 		--text-strong: #ffffff;
@@ -161,7 +189,8 @@ const {
 		--muted: #9ca3af;
 		--border: #233047;
 		--card-bg: #0f172a;
-		--header-bg: rgba(11, 16, 32, 0.7);
+		--header-bg: rgb(var(--surface-rgb) / var(--top-nav-glass-opacity));
+		--menu-overlay-bg: rgb(var(--surface-rgb) / var(--top-nav-glass-opacity));
 
 		--link: #e5e7eb;
 

@@ -1,0 +1,88 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+	title="Navigation Lab | Palo"
+	description="用于测试二级导航展开与当前项激活态的页面。"
+>
+	<main class="page">
+		<nav class="crumbs" aria-label="面包屑">
+			<a href="/studio">← Back to Studio</a>
+		</nav>
+
+		<header class="header">
+			<p class="eyebrow">Level Two Test Page</p>
+			<h1>Navigation Lab</h1>
+			<p class="lead">
+				如果你当前看到 Studio 父级菜单保持展开，并且当前子项高亮，说明二级菜单导航的核心逻辑已经跑通。
+			</p>
+		</header>
+
+		<section class="card">
+			<h2>Checklist</h2>
+			<ul>
+				<li>桌面端父级菜单是否可展开</li>
+				<li>移动端菜单是否能正确显示当前子项</li>
+				<li>点击空白处是否关闭菜单</li>
+				<li>从子页返回父级是否顺畅</li>
+			</ul>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.page {
+		max-width: var(--page-max-width);
+		margin: 0 auto;
+		padding: 2.5rem var(--page-gutter) 5rem;
+	}
+
+	.crumbs a {
+		display: inline-block;
+		text-decoration: none;
+		color: var(--text-strong);
+		font-weight: var(--font-weight-bold);
+		padding: 0.35rem 0.55rem;
+		border-radius: 0.55rem;
+	}
+
+	.crumbs a:hover {
+		background: rgba(17, 24, 39, 0.06);
+		color: var(--link);
+	}
+
+	.eyebrow {
+		margin: 1rem 0 0.35rem;
+		color: var(--muted);
+	}
+
+	.header h1 {
+		margin: 0 0 0.75rem;
+		letter-spacing: -0.03em;
+	}
+
+	.lead {
+		margin: 0 0 1.5rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+	}
+
+	.card {
+		background: var(--card-bg);
+		border: 1px solid var(--border);
+		border-radius: 0.95rem;
+		padding: 1.25rem;
+	}
+
+	.card h2 {
+		margin: 0 0 0.5rem;
+	}
+
+	.card ul {
+		margin: 0;
+		padding-left: 1.2rem;
+		color: var(--text-muted);
+		line-height: 1.8;
+	}
+</style>

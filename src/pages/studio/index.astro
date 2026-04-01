@@ -1,0 +1,106 @@
+---
+import Layout from '../../layouts/Layout.astro';
+---
+
+<Layout
+	title="Studio Overview | Palo"
+	description="用于测试二级菜单导航的一组实验页入口。"
+>
+	<main class="page">
+		<nav class="crumbs" aria-label="面包屑">
+			<a href="/">← Back to Home</a>
+		</nav>
+
+		<header class="header">
+			<p class="eyebrow">Navigation Sandbox</p>
+			<h1>Studio Overview</h1>
+			<p class="lead">
+				这一组页面专门用来测试二级菜单的展开、激活态、移动端弹出菜单与层级导航表现。
+			</p>
+		</header>
+
+		<section class="grid">
+			<a class="card" href="/studio/navigation-lab">
+				<h2>Navigation Lab</h2>
+				<p>用于测试当前激活项、返回路径和层级结构。</p>
+			</a>
+			<a class="card" href="/studio/type-scale-lab">
+				<h2>Type Scale Lab</h2>
+				<p>用更强层级的标题与正文内容观察排版表现。</p>
+			</a>
+			<a class="card" href="/studio/glass-panel-lab">
+				<h2>Glass Panel Lab</h2>
+				<p>用高对比卡片和说明文本观察菜单玻璃背景效果。</p>
+			</a>
+		</section>
+	</main>
+</Layout>
+
+<style>
+	.page {
+		max-width: var(--page-max-width);
+		margin: 0 auto;
+		padding: 2.5rem var(--page-gutter) 5rem;
+	}
+
+	.crumbs a {
+		display: inline-block;
+		text-decoration: none;
+		color: var(--text-strong);
+		font-weight: var(--font-weight-bold);
+		padding: 0.35rem 0.55rem;
+		border-radius: 0.55rem;
+	}
+
+	.crumbs a:hover {
+		background: rgba(17, 24, 39, 0.06);
+		color: var(--link);
+	}
+
+	.eyebrow {
+		margin: 1rem 0 0.35rem;
+		color: var(--muted);
+	}
+
+	.header h1 {
+		margin: 0 0 0.75rem;
+		letter-spacing: -0.03em;
+	}
+
+	.lead {
+		margin: 0 0 1.5rem;
+		color: var(--text-muted);
+		line-height: 1.7;
+	}
+
+	.grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+		gap: 1rem;
+	}
+
+	.card {
+		display: block;
+		text-decoration: none;
+		color: inherit;
+		background: var(--card-bg);
+		border: 1px solid var(--border);
+		border-radius: 0.95rem;
+		padding: 1.25rem;
+	}
+
+	.card:hover {
+		border-color: rgba(99, 102, 241, 0.35);
+		transform: translateY(-2px);
+	}
+
+	.card h2 {
+		margin: 0 0 0.5rem;
+	}
+
+	.card p {
+		margin: 0;
+		color: var(--text-muted);
+		line-height: 1.7;
+	}
+</style>
